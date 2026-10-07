@@ -1,0 +1,548 @@
+.mask {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.into-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mask::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.8;
+}
+
+.hero {
+  height: 100%;
+  width: 100%;
+}
+
+.hero .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* ================= TEXT ================= */
+
+.hero .content h1 {
+  font-size: 4rem;
+  padding: 0.6rem 0 1.5rem;
+
+  /* animation */
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 1s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.hero .content p {
+  font-size: 1.4rem;
+  font-weight: 200;
+  text-transform: uppercase;
+  color: #fff;
+
+  /* animation */
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideUp 1s ease forwards;
+  animation-delay: 0.3s;
+
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+.hero .content p:hover {
+  transform: translateY(-8px);
+  color: #00bcd4;
+  cursor: pointer;
+  animation-delay: -3s;
+}
+
+/* ================= BUTTONS ================= */
+
+.content .btn {
+  margin: 1rem 0.2rem;
+
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideUp 1s ease forwards;
+  animation-delay: 0.9s;
+}
+
+/* CV Button */
+.btn-cv {
+  background: linear-gradient(135deg, #00bcd4, #2196f3);
+  color: #fff;
+  padding: 0.8rem 1.6rem;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 12px;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-cv:hover {
+  background: #0097a7;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.4);
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media screen and (max-width: 640px) {
+  .hero .content h1 {
+    font-size: 3rem;
+  }
+
+  .hero .content p {
+    font-size: 1.2rem;
+  }
+}
+
+.hero .content div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* space between ALL buttons */
+  flex-wrap: wrap; /* helps on small screens */
+}
+
+.glitch {
+  position: relative;
+  color: #fff;
+  font-size: 4rem;
+  letter-spacing: 2px;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.glitch::before {
+  color: #00fff9;
+  z-index: -1;
+  animation: glitchTop 1s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  color: #ff00c8;
+  z-index: -2;
+  animation: glitchBottom 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitchTop {
+  0% { clip-path: inset(0 0 85% 0); transform: translate(-2px, -2px); }
+  50% { clip-path: inset(0 0 40% 0); transform: translate(2px, 2px); }
+  100% { clip-path: inset(0 0 80% 0); transform: translate(-2px, 0); }
+}
+
+@keyframes glitchBottom {
+  0% { clip-path: inset(80% 0 0 0); transform: translate(2px, 2px); }
+  50% { clip-path: inset(40% 0 0 0); transform: translate(-2px, -2px); }
+  100% { clip-path: inset(85% 0 0 0); transform: translate(2px, 0); }
+}
+
+.mask::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 95%,
+    rgba(0, 255, 255, 0.2) 100%
+  ),
+  linear-gradient(
+    90deg,
+    transparent 95%,
+    rgba(0, 255, 255, 0.2) 100%
+  );
+
+  background-size: 40px 40px;
+  animation: moveGrid 5s linear infinite;
+  z-index: 1;
+}
+
+@keyframes moveGrid {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(40px);
+  }
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-group .btn {
+  opacity: 0;
+  transform: translateY(-60px); /* start from top */
+  animation: dropDown 0.8s ease forwards;
+}
+
+.btn-group .btn:nth-child(1) {
+  animation-delay: 0.6s;
+}
+
+.btn-group .btn:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.btn-group .btn:nth-child(3) {
+  animation-delay: 1s;
+}
+
+@keyframes dropDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.mask {
+  position: relative;
+  z-index: 1;
+}
+
+.mask::after {
+  z-index: 1; /* dark overlay */
+}
+
+.mask::before {
+  z-index: 2; /* grid overlay */
+}
+
+.hero .content {
+  position: absolute;
+  z-index: 3; /* VERY IMPORTANT */
+}
+
+.into-img {
+  position: relative;
+  z-index: 0;
+}
+
+.mask::before,
+.mask::after {
+  pointer-events: none;
+}
+
+.hero {
+  position: relative; /* ADD THIS */
+  width: 100%;
+  height: 100vh;
+}
+.hero .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10; /* HIGHER */
+}
+
+.mask::before,
+.mask::after {
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  width: 100%; /* add this */
+  max-width: 800px; /* prevents stretching */
+  padding: 0 20px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-group .btn {
+  opacity: 0;
+  transform: translateY(-40px);
+  animation: dropDown 0.9s ease-out forwards;
+}
+
+.mask::before {
+  opacity: 0.4; /* reduce from default */
+}
+
+.glitch::before {
+  opacity: 0.6;
+}
+
+.glitch::after {
+  opacity: 0.4;
+}
+
+.hero .content h1 {
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0,255,255,0.25) 0%, transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: 0.1s;
+  z-index: 2;
+}
+
+.hero::after {
+  left: var(--x);
+  top: var(--y);
+}
+
+#matrix {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0.15;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ================= MATRIX ================= */
+
+#matrix {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* ================= IMAGE ================= */
+
+.mask {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.into-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dark overlay */
+.mask::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: black;
+  opacity: 0.7;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ================= MOUSE GLOW ================= */
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0,255,255,0.2), transparent 70%);
+  top: var(--y);
+  left: var(--x);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ================= CONTENT ================= */
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* ================= TEXT ================= */
+
+.content p {
+  color: #fff;
+  font-size: 1.3rem;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.content h1 {
+  font-size: 4rem;
+  color: #fff;
+  margin: 1rem 0;
+
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 1s ease forwards;
+  animation-delay: 0.5s;
+
+  text-shadow: 0 0 10px rgba(0,255,255,0.5);
+}
+
+/* ================= GLITCH ================= */
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.glitch::before {
+  color: #00fff9;
+  z-index: -1;
+  opacity: 0.6;
+  animation: glitchTop 1s infinite alternate;
+}
+
+.glitch::after {
+  color: #ff00c8;
+  z-index: -2;
+  opacity: 0.4;
+  animation: glitchBottom 1s infinite alternate;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* CV Button */
+.btn-cv {
+  background: linear-gradient(135deg, #00bcd4, #2196f3);
+}
+
+/* Hover */
+.btn:hover {
+  box-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4;
+  transform: translateY(-3px);
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glitchTop {
+  0% { transform: translate(-2px, -2px); }
+  100% { transform: translate(2px, 2px); }
+}
+
+@keyframes glitchBottom {
+  0% { transform: translate(2px, 2px); }
+  100% { transform: translate(-2px, -2px); }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 640px) {
+  .content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+.socials {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.socials a {
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #00bcd4;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.socials a:hover {
+  color: #00bcd4;
+  box-shadow: 0 0 10px #00bcd4;
+}
